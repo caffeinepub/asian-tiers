@@ -1,0 +1,101 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Plus Jakarta Sans";
+  src: url("/assets/fonts/PlusJakartaSans.woff2") format("woff2");
+  font-weight: 300 700;
+  font-display: swap;
+}
+
+@layer base {
+  :root {
+    --radius: 0.875rem;
+    /* Pure black / deep dark theme */
+    --background: 0.05 0.01 262;
+    --foreground: 0.93 0.005 255;
+    --card: 0.08 0.018 262;
+    --card-foreground: 0.93 0.005 255;
+    --popover: 0.08 0.018 262;
+    --popover-foreground: 0.93 0.005 255;
+    --primary: 0.55 0.21 280;
+    --primary-foreground: 0.98 0 0;
+    --secondary: 0.11 0.028 258;
+    --secondary-foreground: 0.93 0.005 255;
+    --muted: 0.11 0.028 258;
+    --muted-foreground: 0.5 0.01 255;
+    --accent: 0.55 0.21 280;
+    --accent-foreground: 0.98 0 0;
+    --destructive: 0.577 0.245 27.325;
+    --destructive-foreground: 0.985 0 0;
+    --border: 0.18 0.04 245;
+    --input: 0.1 0.025 258;
+    --ring: 0.55 0.21 280;
+    --chart-1: 0.82 0.18 85;
+    --chart-2: 0.72 0.22 50;
+    --chart-3: 0.65 0.2 30;
+    --chart-4: 0.68 0.19 160;
+    --chart-5: 0.65 0.2 250;
+    --sidebar: 0.05 0.01 262;
+    --sidebar-foreground: 0.93 0.005 255;
+    --sidebar-primary: 0.55 0.21 280;
+    --sidebar-primary-foreground: 0.98 0 0;
+    --sidebar-accent: 0.11 0.028 258;
+    --sidebar-accent-foreground: 0.93 0.005 255;
+    --sidebar-border: 0.18 0.04 245;
+    --sidebar-ring: 0.55 0.21 280;
+
+    /* Tier colors - HT/LT system */
+    --tier-ht5: 0.82 0.18 85;
+    --tier-ht4: 0.72 0.22 50;
+    --tier-ht3: 0.65 0.2 30;
+    --tier-ht2: 0.68 0.19 160;
+    --tier-ht1: 0.6 0.16 160;
+    --tier-lt5: 0.65 0.2 250;
+    --tier-lt4: 0.58 0.16 250;
+    --tier-lt3: 0.52 0.12 250;
+    --tier-lt2: 0.48 0.08 255;
+    --tier-lt1: 0.42 0.05 255;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    color-scheme: dark;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: "Plus Jakarta Sans", "DM Sans", system-ui, sans-serif;
+    background: linear-gradient(
+      180deg,
+      oklch(0.05 0.01 262) 0%,
+      oklch(0.07 0.015 260) 100%
+    );
+    min-height: 100vh;
+  }
+}
+
+@layer utilities {
+  .purple-gradient {
+    background: linear-gradient(
+      135deg,
+      oklch(0.52 0.22 278),
+      oklch(0.5 0.2 295)
+    );
+  }
+  .purple-glow {
+    box-shadow: 0 0 20px oklch(0.55 0.21 280 / 0.4), 0 0 40px
+      oklch(0.55 0.21 280 / 0.15);
+  }
+  .card-hover {
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s
+      ease;
+  }
+  .card-hover:hover {
+    transform: translateY(-2px);
+  }
+}
