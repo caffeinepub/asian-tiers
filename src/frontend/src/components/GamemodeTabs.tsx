@@ -7,7 +7,7 @@ export const GAMEMODES = [
   "SMP",
   "Crystal",
   "Pot",
-  "Netherpot",
+  "Nethpot",
   "Tank",
 ] as const;
 
@@ -368,7 +368,7 @@ function PotIcon({ size = 14 }: { size?: number }) {
   );
 }
 
-function NetherpotIcon({ size = 14 }: { size?: number }) {
+function NethpotIcon({ size = 14 }: { size?: number }) {
   return (
     <svg
       width={size}
@@ -376,10 +376,10 @@ function NetherpotIcon({ size = 14 }: { size?: number }) {
       viewBox="0 0 16 16"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      aria-label="Netherpot"
+      aria-label="Nethpot"
       role="img"
     >
-      <title>Netherpot</title>
+      <title>Nethpot</title>
       <path
         d="M5 14 C5 14 3 11 4 8 C4 8 5 10 6 9 C6 9 5 6 7 4 C7 4 7 7 9 6 C9 6 11 4 10 1 C10 1 13 4 13 8 C13 11 11 14 8 14 C6.5 14 5 14 5 14Z"
         fill="currentColor"
@@ -438,7 +438,7 @@ const GAMEMODE_ICONS: Record<GamemodeType, IconComponent> = {
   SMP: SMPIcon,
   Crystal: CrystalIcon,
   Pot: PotIcon,
-  Netherpot: NetherpotIcon,
+  Nethpot: NethpotIcon,
   Tank: TankIcon,
 };
 
@@ -451,7 +451,7 @@ const GAMEMODE_COLORS: Record<GamemodeType, string> = {
   SMP: "oklch(0.65 0.20 145)",
   Crystal: "oklch(0.72 0.18 215)",
   Pot: "oklch(0.68 0.22 155)",
-  Netherpot: "oklch(0.70 0.22 35)",
+  Nethpot: "oklch(0.70 0.22 35)",
   Tank: "oklch(0.65 0.10 240)",
 };
 

@@ -33,20 +33,30 @@ const REGIONS = [
 ];
 
 const SUBMISSION_TIERS = [
+  "HT5",
+  "HT4",
+  "HT3",
+  "HT2",
+  "HT1",
+  "LT5",
+  "LT4",
   "LT3",
-  "LT3+",
   "LT2",
-  "LT2+",
   "LT1",
-  "LT1+",
-  "M1",
-  "M2",
-  "M3",
-  "M4",
-  "M5",
-  "Combat Master",
-  "Grandmaster",
 ];
+
+const TIER_DISPLAY_COLORS: Record<string, string> = {
+  HT5: "oklch(0.82 0.18 85)",
+  HT4: "oklch(0.72 0.22 50)",
+  HT3: "oklch(0.65 0.20 30)",
+  HT2: "oklch(0.68 0.19 160)",
+  HT1: "oklch(0.60 0.16 160)",
+  LT5: "oklch(0.65 0.20 250)",
+  LT4: "oklch(0.58 0.16 250)",
+  LT3: "oklch(0.52 0.12 250)",
+  LT2: "oklch(0.48 0.08 255)",
+  LT1: "oklch(0.42 0.05 255)",
+};
 
 const DARK_SELECT_CONTENT_STYLE = {
   background: "oklch(0.08 0.020 262)",
@@ -90,15 +100,6 @@ export function SubmitPlayerModal({
   };
 
   const isValid = !!name.trim() && !!region && !!gamemode && !!submissionTier;
-
-  // Color indicator for selected tier
-  const getTierColor = (tier: string): string => {
-    if (tier === "Grandmaster") return "oklch(0.72 0.18 295)";
-    if (tier === "Combat Master") return "oklch(0.82 0.18 85)";
-    if (tier.startsWith("M"))
-      return `oklch(0.60 0.20 ${180 + (Number(tier.slice(1)) - 1) * 8})`;
-    return "oklch(0.52 0.12 250)";
-  };
 
   return (
     <Dialog open={open} onOpenChange={handleClose}>
@@ -264,37 +265,29 @@ export function SubmitPlayerModal({
                     className="bg-input border-border text-foreground"
                     data-ocid="submit_player.tier.select"
                     style={
-                      submissionTier
-                        ? { borderColor: `${getTierColor(submissionTier)}66` }
+                      submissionTier && TIER_DISPLAY_COLORS[submissionTier]
+                        ? {
+                            borderColor: `${TIER_DISPLAY_COLORS[submissionTier]}66`,
+                          }
                         : {}
                     }
                   >
                     <SelectValue placeholder="Select your tier" />
                   </SelectTrigger>
                   <SelectContent style={DARK_SELECT_CONTENT_STYLE}>
-                    {SUBMISSION_TIERS.map((t) => {
-                      const isGrandmaster = t === "Grandmaster";
-                      const isCombatMaster = t === "Combat Master";
-                      return (
-                        <SelectItem
-                          key={t}
-                          value={t}
-                          className="text-foreground focus:bg-accent"
-                          style={{
-                            color: isGrandmaster
-                              ? "oklch(0.72 0.18 295)"
-                              : isCombatMaster
-                                ? "oklch(0.82 0.18 85)"
-                                : undefined,
-                            fontWeight:
-                              isGrandmaster || isCombatMaster ? 700 : undefined,
-                          }}
-                        >
-                          {isGrandmaster ? "👑 " : isCombatMaster ? "⭐ " : ""}
-                          {t}
-                        </SelectItem>
-                      );
-                    })}
+                    {SUBMISSION_TIERS.map((t) => (
+                      <SelectItem
+                        key={t}
+                        value={t}
+                        className="text-foreground focus:bg-accent"
+                        style={{
+                          color: TIER_DISPLAY_COLORS[t],
+                          fontWeight: 600,
+                        }}
+                      >
+                        {t}
+                      </SelectItem>
+                    ))}
                   </SelectContent>
                 </Select>
               </div>
